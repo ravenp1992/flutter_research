@@ -13,7 +13,6 @@ class SignInPage extends StatelessWidget {
   Future<void> _signInAnonymously() async {
     try {
       await auth.signInAnonymously();
-      // print('${userCredentials.user.uid}');
     } catch (e) {
       print(e.toString());
     }
@@ -38,7 +37,7 @@ class SignInPage extends StatelessWidget {
   void _signInWithEmail(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
       fullscreenDialog: true,
-      builder: (context) => EmailSignInPage(),
+      builder: (context) => EmailSignInPage(auth: auth),
     ));
   }
 
@@ -49,6 +48,7 @@ class SignInPage extends StatelessWidget {
         title: Text('Time Tracker'),
         elevation: 2,
       ),
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       body: _buildContent(context),
     );
